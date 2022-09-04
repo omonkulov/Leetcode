@@ -130,14 +130,22 @@ Explanation: L = 50, V= 5, III = 3.
  var romanToInt = function(s) {
   let answer = 0;
   let romanString = s;
-  
+  const romanChars = {
+    I: 1,
+    V: 5, 
+    X: 10, 
+    L: 50,
+    C: 100,
+    D: 500,
+    M: 1000,
+  }
   
   for (let i = 0; i < romanString.length; i++){
     let char = romanString[i];
      
     let nextChar = romanString[i + 1]
-    let currentNumber = getInt(char);
-    let nextNumber = getInt(nextChar);
+    let currentNumber = romanChars(char);
+    let nextNumber = romanChars(nextChar);
 
     if(currentNumber < nextNumber && nextNumber !== 0){
         answer -= currentNumber;
@@ -148,26 +156,4 @@ Explanation: L = 50, V= 5, III = 3.
   
   return answer;
 };
-
-var getInt = function (char) {
-  const I = 1, V = 5, X = 10, L = 50, C = 100, D = 500, M = 1000;
-  switch (char) {
-    case "I":
-      return I;
-    case "V":
-      return V;
-    case "X":
-      return X;
-    case "L":
-      return L;
-    case "C":
-      return C; 
-    case "D":
-      return D; 
-    case "M":
-      return M;
-    default:
-      return 0;
-  }
-}
 // #endregion
