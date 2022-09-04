@@ -1,3 +1,4 @@
+// #region Two Sum
 /****************************************************************
 Two Sum
 
@@ -31,8 +32,10 @@ var twoSum = function (nums, target) {
     }
   }
 };
+// #endregion
 
-/*
+// #region Richest Customer Wealth
+/* 
 Richest Customer Wealth
 You are given an m x n integer grid accounts where accounts[i][j] is the amount of money the i​​​​​​​​​​​th​​​​ customer has in the j​​​​​​​​​​​th​​​​ bank. Return the wealth that the richest customer has.
 
@@ -88,3 +91,83 @@ var maximumWealth = function (accounts) {
   }
   return max;
 };
+// #endregion
+
+// #region Roman to Integer
+/*
+Roman numerals are represented by seven different symbols: I, V, X, L, C, D and M.
+
+Symbol       Value
+I             1
+V             5
+X             10
+L             50
+C             100
+D             500
+M             1000
+For example, 2 is written as II in Roman numeral, just two ones added together. 12 is written as XII, which is simply X + II. The number 27 is written as XXVII, which is XX + V + II.
+
+Roman numerals are usually written largest to smallest from left to right. However, the numeral for four is not IIII. Instead, the number four is written as IV. Because the one is before the five we subtract it making four. The same principle applies to the number nine, which is written as IX. There are six instances where subtraction is used:
+
+I can be placed before V (5) and X (10) to make 4 and 9. 
+X can be placed before L (50) and C (100) to make 40 and 90. 
+C can be placed before D (500) and M (1000) to make 400 and 900.
+Given a roman numeral, convert it to an integer.
+
+Input: s = "MCMXCIV"
+Output: 1994
+Explanation: M = 1000, CM = 900, XC = 90 and IV = 4.
+
+Input: s = "LVIII"
+Output: 58
+Explanation: L = 50, V= 5, III = 3.
+*/
+
+/**
+ * @param {string} s roman string
+ * @return {number}
+ */
+ var romanToInt = function(s) {
+  let answer = 0;
+  let romanString = s;
+  
+  
+  for (let i = 0; i < romanString.length; i++){
+    let char = romanString[i];
+     
+    let nextChar = romanString[i + 1]
+    let currentNumber = getInt(char);
+    let nextNumber = getInt(nextChar);
+
+    if(currentNumber < nextNumber && nextNumber !== 0){
+        answer -= currentNumber;
+    } else {
+        answer += currentNumber;
+    }
+  }
+  
+  return answer;
+};
+
+var getInt = function (char) {
+  const I = 1, V = 5, X = 10, L = 50, C = 100, D = 500, M = 1000;
+  switch (char) {
+    case "I":
+      return I;
+    case "V":
+      return V;
+    case "X":
+      return X;
+    case "L":
+      return L;
+    case "C":
+      return C; 
+    case "D":
+      return D; 
+    case "M":
+      return M;
+    default:
+      return 0;
+  }
+}
+// #endregion
